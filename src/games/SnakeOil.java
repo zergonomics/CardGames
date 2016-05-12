@@ -5,8 +5,8 @@ import java.util.List;
 
 public class SnakeOil extends Game {
 	
-	public static final List<String> jobs = openFile("C:/Users/kjjha_000/Desktop/Coding/CardBoardGames/src/Jobs");
-	public static final List<String> nouns = openFile("C:/Users/kjjha_000/Desktop/Coding/CardBoardGames/src/Nouns");
+	public static final List<String> jobs = openFile("WordLists/Jobs");
+	public static final List<String> nouns = openFile("WordLists/Nouns");
 	
 	private List<String> butWait;
 

@@ -3,8 +3,8 @@ package games;
 import java.util.List;
 
 public class Funemployed extends Game {
-	public static final List<String> jobs = openFile("C:/Users/kjjha_000/Desktop/Coding/CardBoardGames/src/Jobs");
-	public static final List<String> traits = openFile("C:/Users/kjjha_000/Desktop/Coding/CardBoardGames/src/Traits and Items");
+	public static final List<String> jobs = openFile("WordLists/Jobs");
+	public static final List<String> traits = openFile("WordLists/Traits and Items");
 	
 	public Funemployed() {
 	}
