@@ -23,7 +23,7 @@ public class Deck {
 	
 	/**
 	 * Method to add individual cards to the deck. Cards are added to the bottom.
-	 * @param newCards VarArgs, the cards to be added
+	 * @param newCards the cards to be added
 	 */
 	public void addIndividualCards(String... newCards) {
 		for(int i = 0; i < newCards.length; i++) {
