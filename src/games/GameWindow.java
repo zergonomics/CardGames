@@ -28,6 +28,8 @@ public class GameWindow {
 	
 	List<PlayerWindow> playerWindows;
 	
+	private JSpinner ss;
+	
 	public static void main(String [] args) {
 		fun = new Funemployed();
 		snake = new SnakeOil();
@@ -47,6 +49,7 @@ public class GameWindow {
 		JSpinner s = new JSpinner(spin);
 		JLabel l = new JLabel("Players: ");
 		JButton exit = new JButton("Exit");
+		JButton um = new JButton("Unminimize windows");
         
 		f.setLocation(x, 150);
         f.add(exit);
@@ -62,25 +65,17 @@ public class GameWindow {
 		f.add(p);
         f.setLayout(new FlowLayout());
         
-        //---------- FUNEMPLOYED PANELS
-        
-		JPanel funPanel = new JPanel();
-		JButton gfj = new JButton("Generate jobs");
-		JButton gft = new JButton("Generate traits");
-
-		funPanel.add(gfj);
-		funPanel.add(gft);
-		funPanel.setVisible(false);
-		f.add(funPanel);
+		um.setVisible(false);
+		f.add(um);
 				
-		// --------- SNAKE OIL PANELS
+		// --------- Game Panel
 		
-		JPanel snakePanel = new JPanel();
+		JPanel gamePanel = new JPanel();
 		JLabel l2 = new JLabel("# Words ");
 		JButton gsj = new JButton("Generate jobs");
 		JButton gsn = new JButton("Generate nouns");
 		SpinnerNumberModel snakeSpinModel = new SpinnerNumberModel(6, 1, 20, 1);
-		JSpinner ss = new JSpinner(snakeSpinModel);
+		ss = new JSpinner(snakeSpinModel);
 
 		JPanel allJobs = new JPanel();
 		JButton job1 = new JButton();
@@ -91,12 +86,12 @@ public class GameWindow {
 		
 		chosenJob.setFont(new Font("Serif", Font.BOLD, 15));
 
-		snakePanel.add(l2);
-		snakePanel.add(ss);
-		snakePanel.add(gsj);
-		snakePanel.add(gsn);
-		snakePanel.setVisible(false);
-		f.add(snakePanel);
+		gamePanel.add(l2);
+		gamePanel.add(ss);
+		gamePanel.add(gsj);
+		gamePanel.add(gsn);
+		gamePanel.setVisible(false);
+		f.add(gamePanel);
 
 		allJobs.add(chosenJob);
 		allJobs.add(job1);
@@ -141,7 +136,7 @@ public class GameWindow {
 		gsj.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				List<String> jobs = snake.genJobs(2);
+				List<String> jobs = fun.genJobs(2);
 				job1.setText(jobs.get(0));
 				job2.setText(jobs.get(1));
 				chosenJob.setVisible(false);
@@ -199,23 +194,30 @@ public class GameWindow {
 			}
 		});
 		
+		um.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				for (PlayerWindow window : playerWindows) {
+					window.toFront();
+				}
+			}
+		});
+		
 		// --- Base Buttons
 		
 		b.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				numPlayers = (int)s.getValue();
+				gamePanel.setVisible(true);
+				allJobs.setVisible(false);
+				um.setVisible(true);
 
 				switch(c.getSelectedItem().toString()) {
 					case "Snake Oil":
-						snakePanel.setVisible(true);
-						funPanel.setVisible(false);
 						secondary(snake);
 						break;
 					case "Funemployed":
-						snakePanel.setVisible(false);
-						allJobs.setVisible(false);
-						funPanel.setVisible(true);
 						secondary(fun);
 						break;
 					default:
@@ -239,6 +241,7 @@ public class GameWindow {
 		
 		for(int i = 0; i < numPlayers; i++) {
 			PlayerWindow tempWindow = new PlayerWindow(i, game, x + width + offset);
+			tempWindow.refresh((int)ss.getValue());
 			tempWindow.setVisible(true);
 			playerWindows.add(tempWindow);
 		}

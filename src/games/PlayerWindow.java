@@ -94,7 +94,8 @@ public class PlayerWindow extends JFrame {
 		highlightPanel.removeAll();
 		ButtonwithHighlight tempButton;
 		for (int i = 0; i < num; i++) {
-			tempButton = new ButtonwithHighlight(words.get(i));
+			String word = words.get(i);
+			tempButton = new ButtonwithHighlight(word);
 			highlightPanel.add(tempButton.highlight);
 			tempButton.setBorder(null);
 			tempButton.setBackground(Color.lightGray);
@@ -106,7 +107,6 @@ public class PlayerWindow extends JFrame {
 			    @Override
 			    protected Color getDisabledTextColor() {
 			    	return Color.YELLOW;
-			    	
 			    }
 			});
 			tempButton.addActionListener(new ActionListener() {
@@ -123,7 +123,7 @@ public class PlayerWindow extends JFrame {
 		wordPanel.setVisible(false);
 		pack();
 	}
-	
+
 	public void getSelected() {
 		for (JToggleButton button : wordList) {
 			if (!button.isSelected()) {
