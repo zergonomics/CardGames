@@ -29,7 +29,7 @@ public class PlayerWindow extends JFrame {
 	
 	private List<JToggleButton> wordList;
 	
-	public PlayerWindow(int id, Game game, int x) {
+	public PlayerWindow(int id, Game game, int x, int offset) {
 		this.id = id;
 		this.game = game;
 		wordPanel = new JPanel();
@@ -79,7 +79,7 @@ public class PlayerWindow extends JFrame {
 		add(wordPanel);
 		
 		setLayout(new FlowLayout());
-		setLocation(x, (int) ((id + 0.5) * 110));
+		setLocation(x, (int) ((id + 0.5) * 110 + offset));
 		Random rand = new Random();
 		buttonPanel.setBackground(new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)));
 		setTitle("Player " + Integer.toString(id + 1));

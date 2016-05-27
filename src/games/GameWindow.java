@@ -23,7 +23,9 @@ public class GameWindow {
 	private static SnakeOil snake;
 	
 	private static int x = 50;
+	private static int y = 50;
 	private static int width = 400;
+	private static int height = 200;
 	private static int offset = 10;
 	
 	List<PlayerWindow> playerWindows;
@@ -51,10 +53,10 @@ public class GameWindow {
 		JButton exit = new JButton("Exit");
 		JButton um = new JButton("Unminimize windows");
         
-		f.setLocation(x, 150);
+		f.setLocation(x, y);
         f.add(exit);
 		f.setVisible(true);
-		f.setSize(width, 200);
+		f.setSize(width, height);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel p = new JPanel();
@@ -104,7 +106,7 @@ public class GameWindow {
 		f.add(allJobs);
 
 		f.revalidate();
-		
+	
 		// --- Funemployed buttons
 		
 		
@@ -240,7 +242,7 @@ public class GameWindow {
 		playerWindows = new ArrayList<PlayerWindow>();
 		
 		for(int i = 0; i < numPlayers; i++) {
-			PlayerWindow tempWindow = new PlayerWindow(i, game, x + width + offset);
+			PlayerWindow tempWindow = new PlayerWindow(i, game, x, height + offset);
 			tempWindow.refresh((int)ss.getValue());
 			tempWindow.setVisible(true);
 			playerWindows.add(tempWindow);
